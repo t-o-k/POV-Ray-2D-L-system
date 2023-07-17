@@ -22,3 +22,8 @@ F	         Move forward by line length drawing a cylinder
 (	         Decrement turning angle by turning angle increment
 )	         Increment turning angle by turning angle increment
 ```
+
+Also see Paul Bourke "L-System User Notes" here:
+
+http://paulbourke.net/fractals/lsys
+
