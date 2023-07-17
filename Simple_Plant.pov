@@ -11,17 +11,6 @@ which can be found in the LICENSE file.
 */
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-// L-system
-// https://en.wikipedia.org/wiki/L-system
-
-// Dragon_curve
-// https://en.wikipedia.org/wiki/Dragon_curve
-
-// Heighway Dragon Tiling
-// https://larryriddle.agnesscott.org/ifs/heighway/heighwayTiling.htm
-
-// ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
-
 #version 3.7;
 
 #include "L-system.inc"
