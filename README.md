@@ -7,7 +7,7 @@ Note that this library is work in progress, so everything has not been tested an
 
 #### Meaning of symbols/characters in rules arrays:
 ```
-F	         Move forward by line length drawing a cylinder
+F	         Move forward by length drawing a cylinder
 +	         Turn clockwise by turning angle (in radians)
 -	         Turn counterclockwise by turning angle (in radians)
 |	         Reverse direction (ie: turn by pi radians)
