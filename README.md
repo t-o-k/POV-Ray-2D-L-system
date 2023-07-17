@@ -24,6 +24,14 @@ f    Move forward by length without drawing
 )    Increment turning angle by turning angle increment
 ```
 
+The following macros must be called before the L_Transform() macro in order to enable use of the symbols listed before them:
+
+```
+# !    InsertRadiusFunctions()
+> <    InsertLengthFunctions()
+( )    InsertAngleFunctions()
+```
+
 Also see Paul Bourke "L-System User Notes" here:
 
 http://paulbourke.net/fractals/lsys
