@@ -58,7 +58,16 @@ which can be found in the LICENSE file.
 
 #macro InsertBasicFunctions(Fns)
 
-    #local S = asc("F"); // Forward
+    #local S = asc("F"); // Move forward while "drawing"
+    #declare Fns[S][I_X] = function(x, y, z, l, r, h, a, s) { x + l*cos(h) };
+    #declare Fns[S][I_Y] = function(x, y, z, l, r, h, a, s) { y + l*sin(h) };
+    #declare Fns[S][I_Z] = NoChangeFunctions[I_Z];
+    #declare Fns[S][I_L] = NoChangeFunctions[I_L];
+    #declare Fns[S][I_R] = NoChangeFunctions[I_R];
+    #declare Fns[S][I_H] = NoChangeFunctions[I_H];
+    #declare Fns[S][I_A] = NoChangeFunctions[I_A];
+    #declare Fns[S][I_S] = NoChangeFunctions[I_S];
+    #local S = asc("f"); // Move forward while not "drawing"
     #declare Fns[S][I_X] = function(x, y, z, l, r, h, a, s) { x + l*cos(h) };
     #declare Fns[S][I_Y] = function(x, y, z, l, r, h, a, s) { y + l*sin(h) };
     #declare Fns[S][I_Z] = NoChangeFunctions[I_Z];
@@ -284,7 +293,7 @@ which can be found in the LICENSE file.
                     Fns[S][I_A](p0.x, p0.y, p0.z, Length0, Radius0, Heading0, Angle0, Swap0);
                 #local Swap1 =
                     Fns[S][I_S](p0.x, p0.y, p0.z, Length0, Radius0, Heading0, Angle0, Swap0);
-                #if (vlength(p1 - p0) > 1e-6)
+                #if ((S != asc("f")) & (vlength(p1 - p0) > 1e-6))
                     #if (Cylinders)
                         cylinder { p0, p1, Radius0 }
                     #end // if
