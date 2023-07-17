@@ -3,7 +3,7 @@
 
 https://en.wikipedia.org/wiki/L-system
 
-Note that this library is work in progress, so anything may suddenly change.
+Note that this library is work in progress, so everything has not been tested and anything may suddenly change.
 
 #### Meaning of symbols/characters in rules arrays:
 ```
