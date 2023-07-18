@@ -34,8 +34,10 @@ default {
 
 #declare GoldenRatio = (1 + sqrt(5))/2;
 
-// Variables
+// Constant
 #declare Rules[asc("F")] = "F";
+
+// Variable
 #declare Rules[asc("X")] = ">[-FX]+FX";
 
 #declare Axiom = "FX";
