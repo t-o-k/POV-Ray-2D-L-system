@@ -9,19 +9,19 @@ Note that this library is work in progress, so everything has not been tested an
 ```
 F    Move forward by length drawing a cylinder
 f    Move forward by length without drawing
+|    Reverse direction (ie: turn by pi radians)
 +    Turn clockwise by turning angle (in radians)
 -    Turn counterclockwise by turning angle (in radians)
-|    Reverse direction (ie: turn by pi radians)
+&    Swap the meaning of + and -
 [    Push current drawing state onto stack
 ]    Pop current drawing state from the stack
-#    Increment the cylinder radius by radius increment
-!    Decrement the cylinder radius by radius increment
+#    Increase the cylinder radius by multiplying by a scale factor and/or adding an increment
+!    Decrease the cylinder radius by subtracting an increment and/or dividing by a scale factor
+>    Increase the cylinder length by multiplying by a scale factor and/or adding an increment
+<    Decrease the cylinder length by subtracting an increment and/or dividing by a scale factor
+(    Increase the turning angle by multiplying by a scale factor and/or adding an increment
+)    Decrease the turning angle by subtracting an increment and/or dividing by a scale factor
 @    Draw a sphere with cylinder radius
->    Multiply the cylinder length by the length scale factor
-<    Divide the cylinder length by the length scale factor
-&    Swap the meaning of + and -
-(    Decrement turning angle by turning angle increment
-)    Increment turning angle by turning angle increment
 ```
 
 The following macros must be called before the L_Transform() macro in order to enable use of the symbols listed before them:
