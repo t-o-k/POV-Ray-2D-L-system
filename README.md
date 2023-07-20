@@ -15,10 +15,10 @@ f    Move forward by length without drawing
 &    Swap the meaning of + and -
 [    Push current drawing state onto stack
 ]    Pop current drawing state from the stack
-#    Increase the cylinder radius by multiplying by a scale factor and/or adding an increment
-!    Decrease the cylinder radius by subtracting an increment and/or dividing by a scale factor
 >    Increase the cylinder length by multiplying by a scale factor and/or adding an increment
 <    Decrease the cylinder length by subtracting an increment and/or dividing by a scale factor
+#    Increase the cylinder radius by multiplying by a scale factor and/or adding an increment
+!    Decrease the cylinder radius by subtracting an increment and/or dividing by a scale factor
 (    Increase the turning angle by multiplying by a scale factor and/or adding an increment
 )    Decrease the turning angle by subtracting an increment and/or dividing by a scale factor
 @    Draw a sphere with cylinder radius
