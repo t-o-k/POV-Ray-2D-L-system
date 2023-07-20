@@ -43,7 +43,7 @@ default {
 #declare Axiom = "FX";
 
 InsertNoChangeFunctions(Functions, "X")
-InsertLengthFunctions(Functions, 1/GoldenRatio)
+InsertLengthFunctions(Functions, 1/GoldenRatio, 0)
 
 #declare Iterations = 9;
 #declare L_string = L_Transform(Axiom, Rules, Iterations);
