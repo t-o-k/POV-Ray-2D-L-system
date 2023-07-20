@@ -27,8 +27,8 @@ f    Move forward by length without drawing
 The following macros must be called before the L_Transform() macro in order to enable use of the symbols listed before them:
 
 ```
-# !    InsertRadiusFunctions()
 > <    InsertLengthFunctions()
+# !    InsertRadiusFunctions()
 ( )    InsertAngleFunctions()
 ```
 
