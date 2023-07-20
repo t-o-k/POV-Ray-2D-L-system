@@ -118,13 +118,13 @@ which can be found in the LICENSE file.
 #end // macro InsertBasicFunctions
 
 
-#macro InsertLengthFunctions(Fns, LengthScale)
+#macro InsertLengthFunctions(Fns, LengthScale, LengthIncrement)
 
     #local S = asc(">");
     #declare Fns[S][I_X] = NoChangeFunctions[I_X];
     #declare Fns[S][I_Y] = NoChangeFunctions[I_Y];
     #declare Fns[S][I_Z] = NoChangeFunctions[I_Z];
-    #declare Fns[S][I_L] = function(x, y, z, l, r, h, a, s) { l*LengthScale };
+    #declare Fns[S][I_L] = function(x, y, z, l, r, h, a, s) { l*LengthScale + LengthIncrement };
     #declare Fns[S][I_R] = NoChangeFunctions[I_R];
     #declare Fns[S][I_H] = NoChangeFunctions[I_H];
     #declare Fns[S][I_A] = NoChangeFunctions[I_A];
@@ -133,7 +133,7 @@ which can be found in the LICENSE file.
     #declare Fns[S][I_X] = NoChangeFunctions[I_X];
     #declare Fns[S][I_Y] = NoChangeFunctions[I_Y];
     #declare Fns[S][I_Z] = NoChangeFunctions[I_Z];
-    #declare Fns[S][I_L] = function(x, y, z, l, r, h, a, s) { l/LengthScale };
+    #declare Fns[S][I_L] = function(x, y, z, l, r, h, a, s) { (l - LengthIncrement)/LengthScale };
     #declare Fns[S][I_R] = NoChangeFunctions[I_R];
     #declare Fns[S][I_H] = NoChangeFunctions[I_H];
     #declare Fns[S][I_A] = NoChangeFunctions[I_A];
@@ -142,7 +142,7 @@ which can be found in the LICENSE file.
 #end // macro InsertLengthFunctions
 
 
-#macro InsertAngleFunctions(Fns, AngleIncrement)
+#macro InsertAngleFunctions(Fns, AngleScale, AngleIncrement)
 
     #local S = asc("(");
     #declare Fns[S][I_X] = NoChangeFunctions[I_X];
@@ -151,7 +151,7 @@ which can be found in the LICENSE file.
     #declare Fns[S][I_L] = NoChangeFunctions[I_L];
     #declare Fns[S][I_R] = NoChangeFunctions[I_R];
     #declare Fns[S][I_H] = NoChangeFunctions[I_H];
-    #declare Fns[S][I_A] = function(x, y, z, l, r, h, a, s) { a - AngleIncrement };
+    #declare Fns[S][I_A] = function(x, y, z, l, r, h, a, s) { (a - AngleIncrement)/AngleScale };
     #declare Fns[S][I_S] = NoChangeFunctions[I_S];
     #local S = asc(")");
     #declare Fns[S][I_X] = NoChangeFunctions[I_X];
@@ -160,20 +160,20 @@ which can be found in the LICENSE file.
     #declare Fns[S][I_L] = NoChangeFunctions[I_L];
     #declare Fns[S][I_R] = NoChangeFunctions[I_R];
     #declare Fns[S][I_H] = NoChangeFunctions[I_H];
-    #declare Fns[S][I_A] = function(x, y, z, l, r, h, a, s) { a + AngleIncrement };
+    #declare Fns[S][I_A] = function(x, y, z, l, r, h, a, s) { a*AngleScale + AngleIncrement };
     #declare Fns[S][I_S] = NoChangeFunctions[I_S];
 
 #end // macro InsertAngleFunctions
 
 
-#macro InsertRadiusFunctions(Fns, RadiusIncrement)
+#macro InsertRadiusFunctions(Fns, RadiusScale, RadiusIncrement)
 
     #local S = asc("!");
     #declare Fns[S][I_X] = NoChangeFunctions[I_X];
     #declare Fns[S][I_Y] = NoChangeFunctions[I_Y];
     #declare Fns[S][I_Z] = NoChangeFunctions[I_Z];
     #declare Fns[S][I_L] = NoChangeFunctions[I_L];
-    #declare Fns[S][I_R] = function(x, y, z, l, r, h, a, s) { r - RadiusIncrement };
+    #declare Fns[S][I_R] = function(x, y, z, l, r, h, a, s) { (r - RadiusIncrement)/RadiusScale };
     #declare Fns[S][I_H] = NoChangeFunctions[I_H];
     #declare Fns[S][I_A] = NoChangeFunctions[I_A];
     #declare Fns[S][I_S] = NoChangeFunctions[I_S];
@@ -182,7 +182,7 @@ which can be found in the LICENSE file.
     #declare Fns[S][I_Y] = NoChangeFunctions[I_Y];
     #declare Fns[S][I_Z] = NoChangeFunctions[I_Z];
     #declare Fns[S][I_L] = NoChangeFunctions[I_L];
-    #declare Fns[S][I_R] = function(x, y, z, l, r, h, a, s) { r + RadiusIncrement };
+    #declare Fns[S][I_R] = function(x, y, z, l, r, h, a, s) { r*RadiusScale + RadiusIncrement };
     #declare Fns[S][I_H] = NoChangeFunctions[I_H];
     #declare Fns[S][I_A] = NoChangeFunctions[I_A];
     #declare Fns[S][I_S] = NoChangeFunctions[I_S];
