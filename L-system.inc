@@ -28,6 +28,8 @@ which can be found in the LICENSE file.
 #declare Rules[asc("|")] = "|";
 #declare Rules[asc("-")] = "-";
 #declare Rules[asc("+")] = "+";
+#declare Rules[asc("#")] = "#";
+#declare Rules[asc("!")] = "!";
 #declare Rules[asc("<")] = "<";
 #declare Rules[asc(">")] = ">";
 #declare Rules[asc("(")] = "(";
