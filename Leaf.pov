@@ -42,7 +42,7 @@ default {
 #declare Axiom = "a";
 
 InsertNoChangeFunctions(Functions, "abxy")
-InsertLengthFunctions(Functions, 1.36)
+InsertLengthFunctions(Functions, 1.36, 0.00)
 
 #declare Iterations = 14;
 #declare L_string = L_Transform(Axiom, Rules, Iterations);
