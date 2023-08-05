@@ -24,7 +24,7 @@ which can be found in the LICENSE file.
 
 #version 3.7;
 
-#include "L-system_03.inc"
+#include "L-system.inc"
 
 global_settings { assumed_gamma 1.0 }
 
