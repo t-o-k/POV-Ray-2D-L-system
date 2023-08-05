@@ -11,20 +11,9 @@ which can be found in the LICENSE file.
 */
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-// L-system
-// https://en.wikipedia.org/wiki/L-system
-
-// Dragon_curve
-// https://en.wikipedia.org/wiki/Dragon_curve
-
-// Heighway Dragon Tiling
-// https://larryriddle.agnesscott.org/ifs/heighway/heighwayTiling.htm
-
-// ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
-
 #version 3.7;
 
-#include "L-system_2D.inc"
+#include "../L-system_2D.inc"
 
 global_settings { assumed_gamma 1.0 }
 
@@ -40,53 +29,58 @@ default {
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-// Hexagonal Gosper by Paul Bourke
+// Bush by Paul Bourke
 // http://paulbourke.net/fractals/lsys/
 
-// Constant
-#declare Rules[asc("F")] = "F";
+// Variable
+#declare Rules[asc("F")] = "FF+[+F-F-F]-[-F+F+F]";
 
-// Variables
-#declare Rules[asc("X")] = "X+YF++YF-FX--FXFX-YF+";
-#declare Rules[asc("Y")] = "-FX+YFYF++YF+FX--FX-Y";
-
-#declare Axiom = "XF";
-
-InsertNoChangeFunctions(Functions, "XY")
-
+#declare Axiom = "F";
 #declare Iterations = 4;
+#declare StackSize = 1*Iterations;
+
 #declare L_string = L_Transform(Axiom, Rules, Iterations);
 
-#declare StackSize = 1;
-#declare pStart = <+18, -54,  0>;
-#declare StartLength = 2.0;
-#declare StartRadius = 0.4;
-#declare StartHeading = radians(0);
-#declare StartTurnAngle = radians(-60);
-
-// ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
+#declare pStart = <-85, -20,  0>;
+#declare StartLength = 3.0;
+#declare StartHeading = radians(0.0);
+#declare StartTurnAngle = radians(-22.5);
+#declare StartRadiusSpheres = 0.30;
+#declare StartRadiusCylinders = 0.15;
 
 union {
-    L_Draw(
-        Functions,                                 
+    L_DrawSpheres(
+        Functions,
         L_string,
         StackSize,
         pStart,
         StartLength,
-        StartRadius,
+        StartRadiusSpheres,
         StartHeading,
-        StartTurnAngle,
-        true,
-        true
+        StartTurnAngle
     )
-    pigment { color srgb <0.98, 0.67, 0.19> }
+    pigment { color rgb <1.00, 0.30, 0.10> }
+}
+
+union {
+    L_DrawCylinders(
+        Functions,
+        L_string,
+        StackSize,
+        pStart,
+        StartLength,
+        StartRadiusCylinders,
+        StartHeading,
+        StartTurnAngle
+    )
+    pigment { color rgb <0.20, 0.60, 1.00> }
 }
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-background { color srgb <0.00, 0.19, 0.29> }
+background { color rgb <0.00, 0.05, 0.10> }
 
-#declare Scale = 48;
+#declare Scale = 50;
 
 camera {
     orthographic

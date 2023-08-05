@@ -13,7 +13,7 @@ which can be found in the LICENSE file.
 
 #version 3.7;
 
-#include "L-system_2D.inc"
+#include "../L-system_2D.inc"
 
 global_settings { assumed_gamma 1.0 }
 
@@ -29,69 +29,51 @@ default {
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-// Dragon_curve
-// https://en.wikipedia.org/wiki/Dragon_curve
-
-// Heighway Dragon Tiling
-// https://larryriddle.agnesscott.org/ifs/heighway/heighwayTiling.htm
-
-// Constant
-#declare Rules[asc("F")] = "F";
+// Przemyslaw Prusinkiewicz & Aristid Lindenmayer
+// "The Algorithmic Beauty of Plants"
+// Figure 1.24f on page 25
 
 // Variables
-#declare Rules[asc("X")] = "X+YF";
-#declare Rules[asc("Y")] = "FX-Y";
+#declare Rules[asc("F")] = "FF";
+#declare Rules[asc("X")] = "F-[[X]+X]+F[+FX]-X";
 
-InsertNoChangeFunctions(Functions, "XY")
+InsertNoChangeFunctions(Functions, "X")
 
-#declare Axiom = "FX";
-#declare Iterations = 10;
-#declare StackSize = 0*Iterations;
+#declare Axiom = "X";
 
+#declare Iterations = 5;
+#declare StackSize = 2*Iterations;
 #declare L_string = L_Transform(Axiom, Rules, Iterations);
 
-#declare pStart = <0, 0, 0>;
-#declare StartLength = 2.0;
-#declare StartTurnAngle = radians(+90);
-#declare StartRadius = 0.2;
+#declare pStart = < 0, -40,  0>;
+#declare InitialLength = 1.0;
+#declare InitialRadius = 0.1;
+#declare InitialHeading = radians(+90.0);
+#declare InitialTurnAngle = radians(+22.5);
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-#declare Colors =
-    array[4] {
-        color srgb <0.84, 0.16, 0.16>,
-        color srgb <0.99, 0.75, 0.29>,
-        color srgb <0.97, 0.50, 0.00>,
-        color srgb <0.92, 0.89, 0.72>
-    }
-;
-
 union {
-    #for (I, 0, 3)
-        #declare StartHeading = radians(I*90);
-        union {
-            L_Draw(
-                Functions,
-                L_string,
-                StackSize,
-                pStart,
-                StartLength,
-                StartRadius,
-                StartHeading,
-                StartTurnAngle,
-                true,
-                true
-            )
-            pigment { color Colors[I] }
-        }
-    #end // for
+    L_Draw(
+        Functions,
+        L_string,
+        StackSize,
+        pStart,
+        InitialLength,
+        InitialRadius,
+        InitialHeading,
+        InitialTurnAngle,
+        true,
+        true
+    )
+    pigment { color srgb <0.99, 0.75, 0.29> }
 }
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
 background { color srgb <0.00, 0.19, 0.29> }
 
-#declare Scale = 56;
+#declare Scale = 32;
 
 camera {
     orthographic

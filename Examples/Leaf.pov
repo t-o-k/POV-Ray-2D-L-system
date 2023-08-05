@@ -13,7 +13,7 @@ which can be found in the LICENSE file.
 
 #version 3.7;
 
-#include "L-system_2D.inc"
+#include "../L-system_2D.inc"
 
 global_settings { assumed_gamma 1.0 }
 
@@ -29,36 +29,35 @@ default {
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-// Sort of Pythagoras tree by Paul Bourke
+// Leaf by Paul Bourke
 // http://paulbourke.net/fractals/lsys/
 
-#declare GoldenRatio = (1 + sqrt(5))/2;
+// Variables
+#declare Rules[asc("F")] = ">F<";
+#declare Rules[asc("a")] = "F[+x]Fb";
+#declare Rules[asc("b")] = "F[-y]Fa";
+#declare Rules[asc("x")] = "a";
+#declare Rules[asc("y")] = "b";
 
-// Constant
-#declare Rules[asc("F")] = "F";
+#declare Axiom = "a";
 
-// Variable
-#declare Rules[asc("X")] = ">[-FX]+FX";
+InsertNoChangeFunctions(Functions, "abxy")
+InsertLengthFunctions(Functions, 1.36, 0.00)
 
-#declare Axiom = "FX";
-
-InsertNoChangeFunctions(Functions, "X")
-InsertLengthFunctions(Functions, 1/GoldenRatio, 0)
-
-#declare Iterations = 9;
+#declare Iterations = 14;
 #declare L_string = L_Transform(Axiom, Rules, Iterations);
 
 #declare StackSize = 1*Iterations;
-#declare pStart = < 0, -12,  0>;
-#declare InitialLength = 10.0;
-#declare InitialRadius = 0.04;
+#declare pStart = < 0, -200,  0>;
+#declare InitialLength = 1.0;
+#declare InitialRadius = 0.5;
 #declare InitialHeading = radians(+90);
-#declare InitialTurnAngle = radians(+40);
+#declare InitialTurnAngle = radians(+45);
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
 union {
-    L_Draw(
+    L_DrawCylinders(
         Functions,
         L_string,
         StackSize,
@@ -66,19 +65,16 @@ union {
         InitialLength,
         InitialRadius,
         InitialHeading,
-        InitialTurnAngle,
-        true,
-        true
+        InitialTurnAngle
     )
     pigment { color srgb <0.99, 0.75, 0.29> }
-
 }
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
 background { color srgb <0.00, 0.19, 0.29> }
 
-#declare Scale = 10;
+#declare Scale = 160;
 
 camera {
     orthographic

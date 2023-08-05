@@ -13,7 +13,7 @@ which can be found in the LICENSE file.
 
 #version 3.7;
 
-#include "L-system_2D.inc"
+#include "../L-system_2D.inc"
 
 global_settings { assumed_gamma 1.0 }
 
@@ -29,51 +29,75 @@ default {
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-// Przemyslaw Prusinkiewicz & Aristid Lindenmayer
-// "The Algorithmic Beauty of Plants"
-// Figure 1.24f on page 25
+// Dragon_curve
+// https://en.wikipedia.org/wiki/Dragon_curve
+
+// Heighway Dragon Tiling
+// https://larryriddle.agnesscott.org/ifs/heighway/heighwayTiling.htm
+
+// Constant
+#declare Rules[asc("F")] = "F";
 
 // Variables
-#declare Rules[asc("F")] = "FF";
-#declare Rules[asc("X")] = "F-[[X]+X]+F[+FX]-X";
+#declare Rules[asc("X")] = "X+YF";
+#declare Rules[asc("Y")] = "FX-Y";
 
-InsertNoChangeFunctions(Functions, "X")
+InsertNoChangeFunctions(Functions, "XY")
 
-#declare Axiom = "X";
+#declare Axiom = "FX";
+#declare Iterations = 12;
+#declare StackSize = 1;
 
-#declare Iterations = 5;
-#declare StackSize = 2*Iterations;
 #declare L_string = L_Transform(Axiom, Rules, Iterations);
 
-#declare pStart = < 0, -40,  0>;
-#declare InitialLength = 1.0;
-#declare InitialRadius = 0.1;
-#declare InitialHeading = radians(+90.0);
-#declare InitialTurnAngle = radians(+22.5);
+#declare pStart = <0, 0, 0>;
+#declare StartLength = 2.0;
+#declare StartTurnAngle = radians(+90);
+#declare StartRadius = 0.2;
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
+#declare StartHeading = radians(0);
 union {
     L_Draw(
         Functions,
         L_string,
         StackSize,
         pStart,
-        InitialLength,
-        InitialRadius,
-        InitialHeading,
-        InitialTurnAngle,
+        StartLength,
+        StartRadius,
+        StartHeading,
+        StartTurnAngle,
+        true,
+        true
+    )
+    pigment { color srgb <0.84, 0.16, 0.16> }
+    translate StartLength*<+32,  0,  0>
+}
+
+#declare StartHeading = radians(180);
+union {
+    L_Draw(
+        Functions,
+        L_string,
+        StackSize,
+        pStart,
+        StartLength,
+        StartRadius,
+        StartHeading,
+        StartTurnAngle,
         true,
         true
     )
     pigment { color srgb <0.99, 0.75, 0.29> }
+    translate StartLength*<-32,  0,  0>
 }
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-background { color srgb <0.00, 0.19, 0.29> }
+background { color srgb <0, 0.19, 0.29> }
 
-#declare Scale = 32;
+#declare Scale = 70;
 
 camera {
     orthographic
