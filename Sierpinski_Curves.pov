@@ -13,7 +13,7 @@ which can be found in the LICENSE file.
 
 #version 3.7;
 
-#include "L-system.inc"
+#include "L-system_2D.inc"
 
 global_settings { assumed_gamma 1.0 }
 
