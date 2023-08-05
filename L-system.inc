@@ -1,7 +1,7 @@
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 /*
 
-https://github.com/t-o-k/POV-Ray-L-system
+https://github.com/t-o-k/POV-Ray-2D-L-system
 
 Copyright (c) 2023 Tor Olav Kristensen, http://subcube.com
 
