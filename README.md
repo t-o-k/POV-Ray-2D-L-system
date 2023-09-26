@@ -35,3 +35,7 @@ The following macros must be called before the L_Transform() macro in order to e
 Also see Paul Bourke "L-System User Notes" here:
 
 http://paulbourke.net/fractals/lsys
+
+- and the POV-Ray 3D L-system here:
+
+https://github.com/t-o-k/POV-Ray-3D-L-system
